@@ -19,7 +19,7 @@
   <!-- Microstrain sensor node -->
   <node name="microstrain_mips_node"
   pkg="microstrain_mips"
-  type="microstrain_mips_node" output="screen" ns="gx5">
+  type="microstrain_mips_node" output="screen">
     <param name="port" value="$(arg port)" type="str" />
     <param name="baudrate" value="$(arg baudrate)" type="int" />
 
@@ -29,7 +29,7 @@
     <param name="save_settings" value="true" type="bool" />
     <param name="auto_init" value="true" type="bool" />
 
-    <!-- This parameter is to set wether the device orientation uses a basic 
+    <!-- This parameter is to set wether the device orientation uses a basic
       NED->ENU orientation swap or not. If true, the ENU reported should
       match the label printed on the device. If false X & Y are swapped
       and Z is negated. -->
@@ -64,6 +64,8 @@
     <param name="dynamics_mode" value="1" type="int" />
     <param name="odom_frame_id" value="wgs84_odom_link" type="str" />
     <param name="odom_child_frame_id" value="base_link" type="str" />
+
+    <remap from="imu/data" to="imu_raw"/>
   </node>
 
   <!-- Diagnostics -->
