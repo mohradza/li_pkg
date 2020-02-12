@@ -15,14 +15,15 @@
 -->
 
 <launch>
-  <!-- <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" output="screen" /> -->
+<!--  <node pkg="nodelet" type="nodelet" name="pass_manager" args="manager" output="screen" /> -->
 
   <!-- Run a passthrough filter to clean NaNs -->
-<!--  <node pkg="nodelet" type="nodelet" name="passthrough" args="load pcl/PassThrough pcl_manager" output="screen">
-    <remap from="~input" to="/os1_cloud_node/points" />
+<!--  <node pkg="nodelet" type="nodelet" name="passthrough" args="load pcl/PassThrough manager" output="screen">
+    <remap from="~input" to="/T01/os1_cloud_node/points" />
+    <remap from="~output" to="/cart_pcl_in"/>
     <rosparam>
       filter_field_name: z
-      filter_limit_min: -.750
+      filter_limit_min: -10.0
       filter_limit_max: 10.0
       filter_limit_negative: False
     </rosparam>

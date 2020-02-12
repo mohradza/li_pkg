@@ -18,7 +18,7 @@ include "trajectory_builder.lua"
 options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
-  map_frame = "map_not",
+  map_frame = "map",
   tracking_frame = "base_link",
   published_frame = "base_link",
   odom_frame = "odom",
@@ -73,10 +73,10 @@ TRAJECTORY_BUILDER_2D.min_range = 0.5
 TRAJECTORY_BUILDER_2D.max_range = 100.
 -- TRAJECTORY_BUILDER_2D.max_range = 30.
 
-TRAJECTORY_BUILDER_2D.min_z = 0.0
+TRAJECTORY_BUILDER_2D.min_z = -0.25
 -- TRAJECTORY_BUILDER_2D.min_z = -0.8
 
-TRAJECTORY_BUILDER_2D.max_z = 1.0
+TRAJECTORY_BUILDER_2D.max_z = 0.70
 -- TRAJECTORY_BUILDER_2D.max_z = 2.
 
 TRAJECTORY_BUILDER_2D.missing_data_ray_length = 5.0
@@ -120,7 +120,7 @@ POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
 POSE_GRAPH.constraint_builder. max_constraint_distance = 30.
 -- POSE_GRAPH.constraint_builder. max_constraint_distance = 15.
 
-POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.num_threads = 6
+POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.num_threads = 6 <-- Loop closures
 -- POSE_GRAPH.constraint_builder.ceres_scan_matcher.num_threads = 1
 
 POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.linear_xy_search_window = 10.
