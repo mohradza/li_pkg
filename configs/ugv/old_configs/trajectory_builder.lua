@@ -1,4 +1,4 @@
--- Copyright 2017 The Cartographer Authors
+-- Copyright 2016 The Cartographer Authors
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -12,17 +12,11 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-include "map_builder.lua"
+include "trajectory_builder_2d.lua"
+include "trajectory_builder_3d.lua"
 
-MAP_BUILDER_SERVER = {
-  map_builder = MAP_BUILDER,
-  num_event_threads = 4,
-  num_grpc_threads = 4,
-  server_address = "0.0.0.0:50051",
-  uplink_server_address = "",
-  upload_batch_size = 100,
-  enable_ssl_encryption = false,
-  enable_google_auth = false,
+TRAJECTORY_BUILDER = {
+  trajectory_builder_2d = TRAJECTORY_BUILDER_2D,
+  trajectory_builder_3d = TRAJECTORY_BUILDER_3D,
+  pure_localization = false,
 }
-
-MAP_BUILDER.collate_by_trajectory = true

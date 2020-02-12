@@ -19,8 +19,8 @@ options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
   map_frame = "map",
-  tracking_frame = "base_link",
-  published_frame = "base_link",
+  tracking_frame = "body_aligned_imu_link",
+  published_frame = "body_aligned_imu_link",
   odom_frame = "odom",
   provide_odom_frame = false,
   publish_frame_projected_to_2d = true,
@@ -100,8 +100,8 @@ TRAJECTORY_BUILDER_2D.motion_filter.max_time_seconds = 0.5
 TRAJECTORY_BUILDER_2D.motion_filter.max_distance_meters = 0.1
 -- TRAJECTORY_BUILDER_2D.motion_filter.max_distance_meters = 0.2
 
-TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = 0.004
--- TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(1.)
+-- TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = 0.004
+TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(1.)
 
 -------------------------------
 -- CUSTOM POSE_GRAPH CHANGES --
@@ -117,10 +117,10 @@ POSE_GRAPH.optimize_every_n_nodes = 320
 POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
 -- POSE_GRAPH.constraint_builder.sampling_ratio = 0.3
 
-POSE_GRAPH.constraint_builder. max_constraint_distance = 30.
+POSE_GRAPH.constraint_builder.max_constraint_distance = 30.
 -- POSE_GRAPH.constraint_builder. max_constraint_distance = 15.
 
-POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.num_threads = 6
+POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.num_threads = 10
 -- POSE_GRAPH.constraint_builder.ceres_scan_matcher.num_threads = 1
 
 POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.linear_xy_search_window = 10.
@@ -129,8 +129,8 @@ POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.linear_xy_search_
 POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.linear_z_search_window = 5.
 -- POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.linear_z_search_window = 1.
 
-POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.angular_search_window = math.rad(22.5)
--- POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.angular_search_window = math.rad(15.)
+-- POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.angular_search_window = math.rad(22.5)
+POSE_GRAPH.constraint_builder.fast_correlative_scan_matcher_3d.angular_search_window = math.rad(15.)
 -- IMPACT: MORE DRIFT-TOLERANT LOOP CLOSURES (NEED TO TRY REDUCING FOR 360 FOV CASE)
 
 POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.rotation_weight = 100.
@@ -151,10 +151,10 @@ POSE_GRAPH.optimization_problem.log_solver_summary = true
 -- POSE_GRAPH.optimization_problem.fix_z_in_3d = false
 -- POSE_GRAPH.optimization_problem.fix_z_in_3d = false
 
-POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 6
+POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 10
 -- POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 7
 
-POSE_GRAPH.global_sampling_ratio = 0.1
+POSE_GRAPH.global_sampling_ratio = 0.01
 -- POSE_GRAPH.global_sampling_ratio = 0.003
 
 return options
