@@ -20,7 +20,7 @@ TRAJECTORY_BUILDER_2D = {
   max_z = 2.,
   missing_data_ray_length = 5.,
   num_accumulated_range_data = 1,
-  voxel_filter_size = 0.025,
+  voxel_filter_size = 0.1,
 
   adaptive_voxel_filter = {
     max_length = 0.5,
@@ -73,6 +73,19 @@ TRAJECTORY_BUILDER_2D = {
         insert_free_space = true,
         hit_probability = 0.55,
         miss_probability = 0.49,
+      },
+      tsdf_range_data_inserter = {
+        truncation_distance = 0.3,
+        maximum_weight = 10.,
+        update_free_space = false,
+        normal_estimation_options = {
+          num_normal_samples = 4,
+          sample_radius = 0.5,
+        },
+        project_sdf_distance_to_scan_normal = true,
+        update_weight_range_exponent = 0,
+        update_weight_angle_scan_normal_to_ray_kernel_bandwidth = 0.5,
+        update_weight_distance_cell_to_hit_kernel_bandwidth = 0.5,
       },
     },
   },
