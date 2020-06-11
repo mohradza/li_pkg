@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+<!--	<param name="robot_description" command="$(find xacro)/xacro '$(find marble_common)/urdf/marble_lt2.urdf.xacro' use_nominal_extrinsics:=true " />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>-->
+  <arg name="rate" default="100"/>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="body_aligned_imu_link_to_gx5_link" 
+		args="0 0 0 -1.57 0 3.14 body_aligned_imu_link gx5_link"/>
+
+	<node pkg="tf2_ros" type="static_transform_publisher" name="body_aligned_imu_link_to_os1_sensor" 
+    args="0 0 0.027104 0 0 0 body_aligned_imu_link os1_sensor"/>
+
+	<node pkg="tf2_ros" type="static_transform_publisher" name="body_aligned_imu_link_to_vert_os1_sensor" 
+    args="-0.05 -0.05 -0.1 0 0 1.57 body_aligned_imu_link vert_os1_sensor"/>
+
+	<node pkg="tf2_ros" type="static_transform_publisher" name="os1_sensor_to_os1_lidar" 
+    args="0.0 0.0 0.03618 3.141592653597931 0 0 os1_sensor os1_lidar"/>
+
+	<node pkg="tf2_ros" type="static_transform_publisher" name="vert_o1_sensor_to_vert_os1_lidar" 
+    args="0.0 0.0 0.03618 3.1415926535897931 0 0 vert_os1_sensor vert_os1_lidar"/>
+</launch>

@@ -24,14 +24,14 @@ options = {
   odom_frame = "odom",
   provide_odom_frame = true,
   publish_frame_projected_to_2d = false,
-  use_pose_extrapolator = false,
+  use_pose_extrapolator = true,
   use_odometry = false,
   use_nav_sat = false,
   use_landmarks = false,
   num_laser_scans = 0,
   num_multi_echo_laser_scans = 0,
   num_subdivisions_per_laser_scan = 1,
-  num_point_clouds = 1,
+  num_point_clouds = 2,
   lookup_transform_timeout_sec = 0.2,
   submap_publish_period_sec = 0.3,
   pose_publish_period_sec = 5e-3,
@@ -59,7 +59,7 @@ POSE_GRAPH.constraint_builder.global_localization_min_score = 0.66
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 
-MAP_BUILDER.num_background_threads = 6
+MAP_BUILDER.num_background_threads = 4
 -- Originally set to 4
 
 ------------------------------------------
@@ -84,7 +84,7 @@ TRAJECTORY_BUILDER_3D.real_time_correlative_scan_matcher.linear_search_window = 
 -- TRAJECTORY_BUILDER_3D.real_time_correlative_scan_matcher.linear_search_window = 0.15
 -- IMPACT: SET BASED ON 1 M/S MAX SPEED, TRACKING ERROR IF VEHICLES GOES FASTER
 
-TRAJECTORY_BUILDER_3D.real_time_correlative_scan_matcher.angular_search_window = math.rad(1.)
+TRAJECTORY_BUILDER_3D.real_time_correlative_scan_matcher.angular_search_window = math.rad(20.)
 -- ISSUE: UNRESOLVABLE LATENCY WHEN INCREASING ABOVE 2 DEG/SEC
 
 -- translation and rotation wegiths are really important! And sensitive...
@@ -95,7 +95,7 @@ TRAJECTORY_BUILDER_3D.ceres_scan_matcher.translation_weight = 3.
 TRAJECTORY_BUILDER_3D.ceres_scan_matcher.rotation_weight = 30.
 -- TRAJECTORY_BUILDER_3D.ceres_scan_matcher.rotation_weight = 4e2.
 
-TRAJECTORY_BUILDER_3D.ceres_scan_matcher.ceres_solver_options.num_threads = 6
+TRAJECTORY_BUILDER_3D.ceres_scan_matcher.ceres_solver_options.num_threads = 4
 -- TRAJECTORY_BUILDER_3D.ceres_scan_matcher.ceres_solver_options.num_threads = 1
 
 TRAJECTORY_BUILDER_3D.submaps.range_data_inserter.hit_probability = .55
@@ -125,7 +125,7 @@ POSE_GRAPH.constraint_builder.sampling_ratio = 0.3 --0.6
 POSE_GRAPH.constraint_builder.max_constraint_distance = 30.
 -- POSE_GRAPH.constraint_builder. max_constraint_distance = 15.
 
-POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.num_threads = 6
+POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.num_threads = 4
 -- POSE_GRAPH.constraint_builder.ceres_scan_matcher.num_threads = 1
 -- IMPACT: increase parameter to decrease global SLAM latency
 
@@ -153,7 +153,7 @@ POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.translation_weight = 10
 POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.only_optimize_yaw = false
 -- POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.optimize_yaw = false
 
-POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.ceres_solver_options.num_threads = 6
+POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.ceres_solver_options.num_threads = 4
 -- POSE_GRAPH.constraint_builder.ceres_scan_matcher_3d.ceres_solver_options.num_threads = 1
 -- IMPACT: increase parameter to decrease global SLAM latency
 
@@ -169,7 +169,7 @@ POSE_GRAPH.optimization_problem.fix_z_in_3d = false
 -- POSE_GRAPH.optimization_problem.fix_z_in_3d = false
 -- IMPACT: Does not loop close if set to true.
 
-POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 6
+POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 4
 -- POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 7
 -- IMPACT: increase parameter to decrease global SLAM latency
 
