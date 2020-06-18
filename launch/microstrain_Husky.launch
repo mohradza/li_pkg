@@ -2,11 +2,12 @@
 <launch>
   <!-- Standalone example launch file for 3DM-GX5-25 -->
 
+  <arg name="vehicle_name" default="H01"/>
   <!-- Declare arguments with default values -->
   <arg name="port" default="/dev/microstrain" />
   <arg name="baudrate" default="115200" />
   <arg name="imu_rate" default="1000" />
-  <arg name="imu_frame_id" default="imu_link" />
+  <arg name="imu_frame_id" default="$(arg vehicle_name)/imu_link" />
   <arg name="debug" default="false" />
   <arg name="diagnostics" default="true" />
 
